@@ -26,7 +26,12 @@ To perform nearby Finder search use `MapplsNearbyFinderOptions` class to pass re
 
 ## [Dependencies](#Dependencies)
 
-`MapplsAPICore` and `MapplsAPIKit` are dependencies which will require to use this SDK.
+`MapplsAPICore` and `MapplsAPIKit` are required to use this SDK. When installing with CocoaPods they are resolved automatically. For Swift Package Manager, add each package to your app target.
+
+| Package | Repository URL | Minimum Version |
+| --- | --- | --- |
+| `MapplsAPICore` | https://github.com/MapmyIndia/mappls-api-core-distribution.git | 1.0.18 |
+| `MapplsAPIKit` | https://github.com/MapmyIndia/mappls-api-kit-distribution.git | 2.0.38 |
 
 ## Version History
 | Version | Last Updated |  Release Note |
@@ -39,13 +44,45 @@ To perform nearby Finder search use `MapplsNearbyFinderOptions` class to pass re
 
 ## [Installation](#Installation)
 
+### CocoaPods
+
 This library is available through `CocoaPods`. To install, simply add the following line to your `podfile`:
 
 ```ruby
-pod 'MapplsNearbyFinder', '2.0.2'
+pod 'MapplsNearbyFinder', '2.0.4'
 ```
 
 On running `pod install` command it will automatically download `MapplsNearbyFinder` and dependent frameworks.
+
+### Swift Package Manager
+
+#### Xcode
+
+1. In Xcode, go to **File > Add Package Dependencies...**
+2. Enter the package URL: `https://github.com/MapmyIndia/mappls-nearby-finder-distribution.git`
+3. Select **Up to Next Major Version** starting from `2.0.4`, then add the `MapplsNearbyFinder` product to your app target.
+
+#### Package.swift
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/MapmyIndia/mappls-nearby-finder-distribution.git", from: "2.0.4"),
+    .package(url: "https://github.com/MapmyIndia/mappls-api-core-distribution.git", from: "1.0.18"),
+    .package(url: "https://github.com/MapmyIndia/mappls-api-kit-distribution.git", from: "2.0.38")
+],
+targets: [
+    .target(
+        name: "YourTarget",
+        dependencies: [
+            .product(name: "MapplsNearbyFinder", package: "mappls-nearby-finder-distribution"),
+            .product(name: "MapplsAPICore", package: "mappls-api-core-ios-distribution"),
+            .product(name: "MapplsAPIKit", package: "mappls-api-kit-ios-distribution")
+        ]
+    )
+]
+```
+
+> When installing via Swift Package Manager you must add the dependencies above explicitly, since the `MapplsNearbyFinder` binary package does not declare them.
 
 ## [Authorization](#Authorization)
 
